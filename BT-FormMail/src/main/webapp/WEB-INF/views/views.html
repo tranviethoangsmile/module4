@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Infomations</h1>
+<h2 th:text="${mail.getLanguages()}"></h2>
+<h2 th:text="${mail.getPageSize()}"></h2>
+<h2 th:text="${mail.isSpams()}"></h2>
+<h2 th:text="${mail.getSignature()}"></h2>
+
+</body>
+</html>

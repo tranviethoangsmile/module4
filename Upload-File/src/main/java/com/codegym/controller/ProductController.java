@@ -30,6 +30,9 @@ public class ProductController {
     @Value("${file}")
     private String fileUpload;
 
+    @Value("${tomcat_folder}")
+    private String tomcatUpload;
+
     @GetMapping("")
     public String index(Model model) {
         List<Product> products = productService.findAll();
@@ -50,6 +53,7 @@ public class ProductController {
         String fileName = multipartFile.getOriginalFilename();
         try {
             FileCopyUtils.copy(productForm.getImage().getBytes(), new File(fileUpload + fileName));
+            FileCopyUtils.copy(productForm.getImage().getBytes(), new File(tomcatUpload + fileName));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
