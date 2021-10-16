@@ -6,10 +6,13 @@
 </head>
 <body>
 <form th:object="${music}" th:action="@{/music/edit}" th:method="POST">
+    <input th:field = "*{id}" type="hidden"><br>
     <label for="name">Name:</label>
-    <input id="name" th:field = "${name}">
+    <input id="name" th:field = "*{name}"><br>
     <label for="description">Description:</label>
-    <input id="description" th:field = "${description}">
+    <input id="description" th:field = "*{description}"><br>
+    <label for="file">Music File</label>
+    <input id="file" type="file" th:field = "*{musicfile}"><br><br>
     <button type="submit">Save</button>
 </form>
 </body>

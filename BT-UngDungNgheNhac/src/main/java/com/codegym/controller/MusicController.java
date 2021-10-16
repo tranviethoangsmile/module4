@@ -69,4 +69,32 @@ public class MusicController {
         model.addAttribute("music",music);
         return "/edit";
     }
+
+    @PostMapping("/edit/{id}")
+    public String update (@PathVariable("id") int id,@ModelAttribute ("musuc") Music music, Model model) {
+        int id_music = music.getId();
+        musicService.save(music);
+        Optional<Music> music_new = musicService.findById(id);
+        System.out.println(music_new);
+        model.addAttribute("music",music_new);
+        return ("/edit");
+    }
+
+    @PostMapping("/edit")
+    public ModelAndView list (Music music) {
+        musicService.save(music);
+        ModelAndView modelAndView = new ModelAndView("/infomation");
+        List <Music> musiclist = musicService.findAll();
+        modelAndView.addObject("music",musiclist);
+        return modelAndView;
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteItem (@PathVariable ("id")int id){
+        musicService.remove(id);
+        ModelAndView modelAndView = new ModelAndView("/infomation");
+        List <Music> musiclist = musicService.findAll();
+        modelAndView.addObject("music",musiclist);
+        return modelAndView;
+    }
 }

@@ -18,7 +18,7 @@ public class MusicService implements IMusicService{
 
     @Override
     public List<Music> findAll() {
-       return musicRepository.findAll();
+       return (List<Music>) musicRepository.findAll();
     }
 
     @Override
@@ -32,12 +32,12 @@ public class MusicService implements IMusicService{
     }
 
     @Override
-    public void update(int id, Music product) {
+    public void update(int id, Music music) {
 
     }
 
     @Override
     public void remove(int id) {
-
+        musicRepository.deleteById(id);
     }
 }
