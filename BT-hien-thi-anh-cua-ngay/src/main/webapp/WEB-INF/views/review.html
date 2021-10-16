@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews Photo Day Of photo</title>
+</head>
+<body>
+
+<img id="img-of-the-day">
+<form th:object="${review}" th:action="@{/review/feedback}" novalidate = novalidate th:method="POST" >
+<select th:field = "*{score}">
+    <option th:value="1">1</option>
+    <option th:value="2">2</option>
+    <option th:value="3">3</option>
+    <option th:value="4">4</option>
+    <option th:value="5">5</option>
+</select>
+    <label for="author">Author: </label> <br>
+    <input id="author" th:field = "*{authorName}"> <br>
+    <label for="feedback">FeedBack:</label> <br>
+    <input id="feedback" th:field = "*{feedback}">
+    <button type="submit">Comment</button>
+</form>
+<table th:border="1">
+    <tr th:each="review,rowStat : ${listreview}">
+        <th th:text="${review.getScore()}"></th>
+        <th th:text="${review.getFeedback()}"></th>
+        <th><button>Like</button></th><br>
+    </tr>
+
+</table>
+<script>
+  let query = 'https://api.nasa.gov/planetary/apod?api_key=qz25eSiHpQe0uuLULY6FGw5fWGeVECPl6MaiWg8l';
+  let request = new XMLHttpRequest();
+  request.open('GET', query);
+  request.onload = function() {
+    if (request.status === 200) {
+      let response = JSON.parse(request.responseText);
+      document.getElementById('img-of-the-day').setAttribute('src', response.url);
+    }
+  };
+  request.send();
+
+  $(document).ready(function(){
+      $("button").click(function(){
+          $("p").show();
+      });
+  });
+
+</script>
+<script src="/WEB-INF/jquery/jquery.js"></script>
+</body>
+</html>
