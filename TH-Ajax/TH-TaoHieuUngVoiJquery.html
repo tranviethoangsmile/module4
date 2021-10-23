@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#hide').click(function(){
+                $('p').hide();
+            });
+            $('#show').click(function(){
+                $('p').show();
+            });
+            $('#animation').click(function(){
+                var div = $("div");
+                div.animate({left:'100px'},"slow");
+                div.animate({fontSize:'200px'},"slow");
+            });
+        });
+    </script>
+</head>
+<body>
+    <p style="background:#98bf21;height:100px;width:200px;">If you click on the "Hide" button, I will disappear.</p>
+    <div style="background:#98bf21;height:100px;width:200px;position:absolute;">HELLO</div>
+   
+   <div style="position:absolute;">
+    <button id="hide">Hide</button>
+    <button id="show">Show</button>
+    <button id = "animation">Animation</button>
+</div>
+</body>
+</html>
